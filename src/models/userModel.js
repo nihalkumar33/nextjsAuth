@@ -1,8 +1,19 @@
 import mongoose from "mongoose";
 import { type } from "os";
+// import { unique } from "next/dist/build/utils";
+// ab yeh jo mkl import hai isne mera bhooot dimag kharab kiya hai
 
 const userSchema = new mongoose.Schema({
     username: {
+        type: String,
+        required: [true, "Please provide a password"],
+    },
+    email: {
+        type: String,
+        required: [true, "Please provide a email"],
+        unique: true,
+    },
+    password: {
         type: String,
         required: [true, "Please provide a password"],
     },
@@ -24,3 +35,4 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.models.users || mongoose.model("Users", userSchema);
 
 export default User;
+

@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
         const reqBody = await request.json()
         const {username, email, password} = reqBody
 
-        console.log(reqBody)
+        console.log(`Yeh route.ts se hai: ${username}, ${email}, ${password}`)
 
         const user = await User.findOne({email})
 
@@ -45,6 +45,7 @@ export async function POST(request: NextRequest) {
         })
 
     } catch(error: any) {
+        console.log("Error from route.ts: ", error.message)
         return NextResponse.json({error: error.message}),
         {status: 500}
     }
